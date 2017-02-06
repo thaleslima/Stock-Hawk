@@ -1,5 +1,7 @@
 package com.thaleslima.android.stockhawk.util;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v4.util.Pair;
 
 import com.github.mikephil.charting.data.Entry;
@@ -33,5 +35,11 @@ public final class Utility {
 
 
         return new Pair<>(referenceTime, entries);
+    }
+
+    public static void updateWidgets(Context context) {
+        Intent dataUpdatedIntent = new Intent(Constants.ACTION_DATA_UPDATED)
+                .setPackage(context.getPackageName());
+        context.sendBroadcast(dataUpdatedIntent);
     }
 }

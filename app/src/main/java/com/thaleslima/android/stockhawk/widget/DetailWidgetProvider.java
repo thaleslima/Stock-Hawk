@@ -11,9 +11,9 @@ import android.support.v4.app.TaskStackBuilder;
 import android.widget.RemoteViews;
 
 import com.thaleslima.android.stockhawk.R;
-import com.thaleslima.android.stockhawk.sync.QuoteSyncJob;
 import com.thaleslima.android.stockhawk.ui.DetailActivity;
 import com.thaleslima.android.stockhawk.ui.MainActivity;
+import com.thaleslima.android.stockhawk.util.Constants;
 
 public class DetailWidgetProvider extends AppWidgetProvider {
     @Override
@@ -40,7 +40,7 @@ public class DetailWidgetProvider extends AppWidgetProvider {
     @Override
     public void onReceive(@NonNull Context context, @NonNull Intent intent) {
         super.onReceive(context, intent);
-        if (QuoteSyncJob.ACTION_DATA_UPDATED.equals(intent.getAction())) {
+        if (Constants.ACTION_DATA_UPDATED.equals(intent.getAction())) {
             AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
             int[] appWidgetIds = appWidgetManager.getAppWidgetIds(
                     new ComponentName(context, getClass()));

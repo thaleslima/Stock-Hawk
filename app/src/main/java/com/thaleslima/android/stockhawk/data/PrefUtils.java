@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.annotation.IntDef;
+import android.text.TextUtils;
 
 import com.thaleslima.android.stockhawk.R;
 
@@ -42,12 +43,12 @@ public final class PrefUtils {
         if (!initialized) {
             SharedPreferences.Editor editor = prefs.edit();
             editor.putBoolean(initializedKey, true);
-            editor.putStringSet(stocksKey, defaultStocks);
+            editor.putString(stocksKey, getStringFromStocks(defaultStocks));
             editor.apply();
             return defaultStocks;
         }
-        return prefs.getStringSet(stocksKey, new HashSet<String>());
 
+        return getStocksFromString(prefs.getString(stocksKey, ""));
     }
 
     private static void editStockPref(Context context, String symbol, Boolean add) {
@@ -62,8 +63,30 @@ public final class PrefUtils {
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = prefs.edit();
-        editor.putStringSet(key, stocks);
+        editor.putString(key, getStringFromStocks(stocks));
         editor.apply();
+    }
+
+    private static Set<String> getStocksFromString(String stocks) {
+        String[] stocksSplit = stocks.split(";");
+        Set<String> stocksSet = new HashSet<>();
+
+        for (String stock : stocksSplit) {
+            if (!TextUtils.isEmpty(stock)) stocksSet.add(stock);
+        }
+
+        return stocksSet;
+    }
+
+    private static String getStringFromStocks(Set<String> stocks) {
+        StringBuilder builder = new StringBuilder();
+
+        for (String stock : stocks) {
+            builder.append(stock);
+            builder.append(";");
+        }
+
+        return builder.toString();
     }
 
     public static void addStock(Context context, String symbol) {

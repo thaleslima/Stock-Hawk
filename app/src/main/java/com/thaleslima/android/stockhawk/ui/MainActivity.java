@@ -27,6 +27,7 @@ import com.thaleslima.android.stockhawk.R;
 import com.thaleslima.android.stockhawk.data.Contract;
 import com.thaleslima.android.stockhawk.data.PrefUtils;
 import com.thaleslima.android.stockhawk.sync.QuoteSyncJob;
+import com.thaleslima.android.stockhawk.util.Utility;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -97,6 +98,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                 String symbol = adapter.getSymbolAtPosition(viewHolder.getAdapterPosition());
                 PrefUtils.removeStock(MainActivity.this, symbol);
                 getContentResolver().delete(Contract.Quote.makeUriForStock(symbol), null, null);
+                Utility.updateWidgets(MainActivity.this);
                 showSnackBar(getString(R.string.text_remove_stock, symbol));
             }
         }).attachToRecyclerView(stockRecyclerView);

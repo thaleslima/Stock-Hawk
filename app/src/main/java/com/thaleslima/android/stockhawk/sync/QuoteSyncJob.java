@@ -11,6 +11,7 @@ import android.net.NetworkInfo;
 
 import com.thaleslima.android.stockhawk.data.Contract;
 import com.thaleslima.android.stockhawk.data.PrefUtils;
+import com.thaleslima.android.stockhawk.util.Utility;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -29,7 +30,6 @@ import yahoofinance.histquotes.Interval;
 import yahoofinance.quotes.stock.StockQuote;
 
 public final class QuoteSyncJob {
-    public static final String ACTION_DATA_UPDATED = "com.thaleslima.android.stockhawk.ACTION_DATA_UPDATED";
 
     private static final int ONE_OFF_ID = 2;
     private static final int PERIOD = 300000;
@@ -108,8 +108,7 @@ public final class QuoteSyncJob {
             context.getContentResolver().bulkInsert(Contract.Quote.URI,
                     quoteCVs.toArray(new ContentValues[quoteCVs.size()]));
 
-            Intent dataUpdatedIntent = new Intent(ACTION_DATA_UPDATED);
-            context.sendBroadcast(dataUpdatedIntent);
+            Utility.updateWidgets(context);
 
             if (!invalid) {
                 PrefUtils.setStockStatus(context, PrefUtils.STOCK_STATUS_OK);

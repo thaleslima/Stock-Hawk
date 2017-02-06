@@ -16,8 +16,6 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Locale;
 
-import timber.log.Timber;
-
 public class DetailWidgetRemoteViewsService extends RemoteViewsService {
     private DecimalFormat dollarFormatWithPlus;
     private DecimalFormat dollarFormat;
@@ -51,14 +49,13 @@ public class DetailWidgetRemoteViewsService extends RemoteViewsService {
                         Contract.Quote.QUOTE_COLUMNS.toArray(new String[]{}),
                         null,
                         null,
-                        null);
+                        Contract.Quote.COLUMN_SYMBOL);
 
                 Binder.restoreCallingIdentity(identityToken);
             }
 
             @Override
             public void onDestroy() {
-                Timber.d("onDestroy");
                 if (data != null) {
                     data.close();
                     data = null;
