@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">Stock Hawk</string>
+    <string name="title_activity_detail_activity" translatable="false">Detail</string>
+    <string name="pref_stocks_initialized_key" translatable="false">initialized</string>
+    <string name="pref_stocks_key" translatable="false">stocks</string>
+    <string name="pref_display_mode_key" translatable="false">displayMode</string>
+    <string name="pref_display_mode_default" translatable="false">@string/pref_display_mode_percentage_key</string>
+    <string name="pref_display_mode_absolute_key" translatable="false">absolute</string>
+    <string name="pref_display_mode_percentage_key" translatable="false">percentage</string>
+    <string name="pref_stocks_status_key" translatable="false">loc-status</string>
+
+    <string name="default_stocks_yahoo" translatable="false">YHOO</string>
+    <string name="default_stocks_apple" translatable="false">AAPL</string>
+    <string name="default_stocks_microsoft" translatable="false">MSFT</string>
+    <string name="default_stocks_facebook" translatable="false">FB</string>
+
+    <string name="action_change_units">Change units</string>
+
+    <string name="dialog_title">Add stock</string>
+    <string name="dialog_hint">Symbol (e.g. GOOG)</string>
+    <string name="dialog_cancel">Cancel</string>
+    <string name="dialog_add">Add</string>
+
+    <string name="button_add_stock">Add New Stock To Track</string>
+    <string name="text_search_stock">Search for a stock symbol</string>
+    <string name="text_add_stock">Symbol %s added</string>
+    <string name="text_remove_stock">Symbol %s removed</string>
+    <string name="text_stock_added_no_connectivity">Symbol added. Will refresh when network available.</string>
+    <string name="text_no_connectivity">Will refresh when network available.</string>
+
+    <string name="error_no_network">No network connectivity! Will load stock cursor when the network is available.</string>
+    <string name="error_no_stocks">No stocks added! Hit the floating action button to add one.</string>
+    <string name="error_stock_invalid">Symbol %s is invalid!</string>
+
+    <string name="title_widget_detail">Stock Hawk Details</string>
+    <string name="empty_stock_list">No Stock Hawk Information Available</string>
+</resources>
